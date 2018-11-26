@@ -1,4 +1,4 @@
-package com.sapient.karate;
+package com.myPersonal.karate;
 
 // This package is for the java files used in the project
 
