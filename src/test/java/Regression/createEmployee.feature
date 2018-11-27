@@ -1,7 +1,14 @@
-@Test123
-Feature: Test create Employee API
-  Scenario: Fetch all Employees
-    Given url 'http://dummy.restapiexample.com/api/v1/create'
+@createEmployee @Regression
+
+  Feature: Test Create Employee API
+
+    Background:
+
+      Given url mdaendpoint
+
+    Scenario: Create New Employee
+
+    Given path '/api/v1/create'
     And request {"name":"test","salary":"123","age":"23"}
     When method POST
     Then status 200

@@ -7,9 +7,9 @@ import cucumber.api.CucumberOptions;
 import org.junit.runner.RunWith;
 
 @RunWith(Karate.class)
-@CucumberOptions(features = {"classpath:smoke"},
+@CucumberOptions(features = {"classpath:smoke,classpath:Regression" },
 
- tags = {"@Smoke"})
+ tags = {"@Regression"})
 
 public class TestRunner {
 
