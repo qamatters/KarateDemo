@@ -4,7 +4,7 @@ Feature: Test Employee API
 
   Background:
 
-    Given url mdaendpoint
+    Given url endpoint
 
   Scenario: Fetch all Employees
 

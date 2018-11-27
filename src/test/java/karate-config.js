@@ -11,7 +11,7 @@ function() {
     appSecret: 'my.secret',
     someUrlBase: 'https://some-host.com/v1/auth/',
     anotherUrlBase: 'https://another-host.com/v1/',
-    mdaendpoint:'http://dummy.restapiexample.com'
+    endpoint:'http://dummy.restapiexample.com'
   };
   if (env == 'stage') {
     // over-ride only those that need to be

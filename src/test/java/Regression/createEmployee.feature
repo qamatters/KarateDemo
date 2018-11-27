@@ -4,7 +4,7 @@
 
     Background:
 
-      Given url mdaendpoint
+      Given url endpoint
 
     Scenario: Create New Employee
 
