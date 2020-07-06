@@ -1,5 +1,4 @@
-package com.myPersonal.karate;
-
+package apiTest;
 /* ====================================================================
    Licensed to the Apache Software Foundation (ASF) under one or more
    contributor license agreements.  See the NOTICE file distributed with
@@ -19,11 +18,10 @@ package com.myPersonal.karate;
 
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellReference;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFCellStyle;
-import org.apache.poi.xssf.usermodel.XSSFColor;
+import org.apache.poi.xssf.usermodel.*;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.util.*;
 
 /**
@@ -69,6 +67,8 @@ public class ExcelComparator {
 
     private static final String CELL_DATA_DOES_NOT_MATCH = "Cell Data does not Match ::";
     private static final String CELL_FONT_ATTRIBUTES_DOES_NOT_MATCH = "Cell Font Attributes does not Match ::";
+    static  boolean result = true;
+
 
     private static class Locator {
         Workbook workbook;
@@ -79,20 +79,66 @@ public class ExcelComparator {
 
     List<String> listOfDifferences = new ArrayList<>();
 
-    public static void main(String args[]) throws Exception {
-        if (args.length != 2 || !(new File(args[0]).exists()) || !(new File(args[1]).exists())) {
-            System.err.println("java -cp <classpath> "+ExcelComparator.class.getCanonicalName()+" <workbook1.xls/x> <workbook2.xls/x");
-            System.exit(-1);
-        }
-        Workbook wb1 = WorkbookFactory.create(new File(args[0]));
-        Workbook wb2 = WorkbookFactory.create(new File(args[1]));
+//    public static void main(String args[]) throws Exception {
+//        if (args.length != 2 || !(new File(args[0]).exists()) || !(new File(args[1]).exists())) {
+//            System.err.println("java -cp <classpath> "+ExcelComparator.class.getCanonicalName()+" <workbook1.xls/x> <workbook2.xls/x");
+//            System.exit(-1);
+//        }
+//        Workbook wb1 = WorkbookFactory.create(new File(args[0]));
+//        Workbook wb2 = WorkbookFactory.create(new File(args[1]));
+//
+//        for (String d : ExcelComparator.compare(wb1, wb2)) {
+//            System.out.println(d);
+//        }
+//
+//        wb2.close();
+//        wb1.close();
+//    }
 
-        for (String d : ExcelComparator.compare(wb1, wb2)) {
-            System.out.println(d);
-        }
+    public static boolean compareExcel (String compareType) throws Exception {
 
-        wb2.close();
-        wb1.close();
+        FileInputStream expectedExcelResponse = null;
+        FileInputStream actualExcelResponse = null;
+
+        switch (compareType) {
+
+            case apiTest.constants.DataValidationInExcel:
+
+                expectedExcelResponse = new FileInputStream(new File(constants.actualPath));
+//                expectedExcelResponse = new FileInputStream(new File(constants.DirPath.concat(constants.DataValidationInExcel)));
+                actualExcelResponse = new FileInputStream(new File(constants.actualPath));
+
+             default:
+                 System.out.println("There is no file specified");
+
+        }
+        XSSFWorkbook workbook1 = new XSSFWorkbook(expectedExcelResponse);
+        XSSFWorkbook workbook2 = new XSSFWorkbook(actualExcelResponse);
+
+        XSSFSheet sheet1  = workbook1.getSheet(String.valueOf(0));
+        XSSFSheet sheet2  = workbook2.getSheet(String.valueOf(0));
+
+        List <String> difference = compare(workbook1, workbook2);
+
+        if(difference.isEmpty()){
+            System.out.println("Both files are identical");
+        } else
+        {
+            System.out.println(difference);
+            result = false;
+        }
+  return  result;
+
+    }
+
+    public static void deleteFile () {
+        File file = new File (constants.actualPath);
+        if(file.delete()) {
+            System.out.println("File present in " + constants.actualPath + " is deleted");
+
+        } else {
+            System.out.println("File" + constants.actualPath + " does notexist");
+        }
     }
 
     /**

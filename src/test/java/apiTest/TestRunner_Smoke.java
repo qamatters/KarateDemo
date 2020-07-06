@@ -1,4 +1,5 @@
-package com.myPersonal.karate;
+package apiTest;
+
 // This package is for the java files used in the project
 
 import com.intuit.karate.junit4.Karate;
@@ -6,9 +7,11 @@ import cucumber.api.CucumberOptions;
 import org.junit.runner.RunWith;
 
 @RunWith(Karate.class)
-@CucumberOptions(features = {"classpath:Regression"},
+@CucumberOptions(features = {"classpath:smoke" },
 
-        tags = {"@Regression"})
+ tags = {"@Smoke"})
 
-public class TestRunner_Regression {
+public class TestRunner_Smoke {
+
+
 }

@@ -3,8 +3,8 @@ Feature: Call java demo
   Background:
 
    # Create JDBC connection with DbUtils java class
-    * def config = { username: "yourUserName", password: "yourPassWord", url: "jdbc:mysql://127.0.0.1:3306/sakila?characterEncoding=utf8", driverClassName: "com.mysql.cj.jdbc.Driver" }
-    * def DbUtils = Java.type("com.myPersonal.karate.DbUtils")
+    * def config = { username: "root", password: "deepak", url: "jdbc:mysql://127.0.0.1:3306/sakila?characterEncoding=utf8", driverClassName: "com.mysql.cj.jdbc.Driver" }
+    * def DbUtils = Java.type("apiTest.DbUtils")
     * def db = new DbUtils(config)
 
   Scenario: Get a particular actor detail from mysql default saqila table
