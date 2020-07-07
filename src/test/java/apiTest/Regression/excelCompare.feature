@@ -1,4 +1,4 @@
-Feature: Call java demo
+Feature: Excel Comparison feature with Karate
 
   Background:
 
@@ -8,5 +8,3 @@ Feature: Call java demo
     And def validationType = "dataValidation"
     And def compareResult = excelHelper.compareExcel(validationType);
     And match compareResult == true
-
-

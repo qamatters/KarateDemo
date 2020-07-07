@@ -107,6 +107,7 @@ public class ExcelComparator {
                 expectedExcelResponse = new FileInputStream(new File(constants.actualPath));
 //                expectedExcelResponse = new FileInputStream(new File(constants.DirPath.concat(constants.DataValidationInExcel)));
                 actualExcelResponse = new FileInputStream(new File(constants.actualPath));
+                break;
 
              default:
                  System.out.println("There is no file specified");
