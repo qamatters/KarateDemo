@@ -20,7 +20,7 @@ public class DbUtils {
         dataSource.setUsername(username);
         dataSource.setPassword(password);
         jdbc = new JdbcTemplate(dataSource);
-        logger.info("init jdbc template: {}", url);
+        System.out.println("connection set");
     }
     public Object readValue(String query) {
         return jdbc.queryForObject(query, Object.class);

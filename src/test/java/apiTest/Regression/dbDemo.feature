@@ -1,4 +1,4 @@
-Feature: Call java demo
+Feature: Connect to DB
 
   Background:
 
