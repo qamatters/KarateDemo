@@ -1,12 +1,12 @@
 package apiTest;
 
-import com.intuit.karate.cucumber.CucumberRunner;
-import com.intuit.karate.cucumber.KarateStats;
+import com.intuit.karate.Results;
+import com.intuit.karate.Runner;
 import cucumber.api.CucumberOptions;
 import net.masterthought.cucumber.Configuration;
 import net.masterthought.cucumber.ReportBuilder;
 import org.apache.commons.io.FileUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.time.LocalDateTime;
@@ -15,25 +15,29 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  *
  * @author Deepak
  */
-@CucumberOptions(features = {"classpath:smoke", "classpath:Regression" },
+@CucumberOptions(features = {"classpath:apiTest//Regression" },
         tags = {"@Regression"}) // important: do not use @RunWith(Karate.class) !
 
         public class CucumberReport {
 
-
     @Test
-    public void testParallel() {
-        String karateOutputPath = "target/surefire-reports";
-        KarateStats stats = CucumberRunner.parallel(getClass(), 5, karateOutputPath);
+    void testParallel() {
+        // if in windows, change // to \\
+        String karateOutputPath = "target/karate-reports";
+        Results results = Runner.path("classpath:apiTest//Regression")
+                .tags("@Smoke")
+                .outputCucumberJson(true)
+                .parallel(5);
         generateReport(karateOutputPath);
-        assertTrue("there are scenario failures", stats.getFailCount() == 0);
+        assertEquals(0, results.getFailCount(), results.getErrorMessages());
     }
+
 
     public static void generateReport(String karateOutputPath) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy_MM_dd_HH_mm_ss");
@@ -43,7 +47,8 @@ import static org.junit.Assert.assertTrue;
         List<String> jsonPaths = new ArrayList(jsonFiles.size());
         jsonFiles.forEach(file -> jsonPaths.add(file.getAbsolutePath()));
         String currentDir = System.getProperty("user.dir");
-        String folderPath= currentDir + "\\Reports\\ " + "TestCaseExecution_ " +currentDateTime;
+        // if in windows, change // to \\
+        String folderPath= currentDir + "//Reports// " + "TestCaseExecution_ " +currentDateTime;
         File file = new File (folderPath);
         file.mkdirs();
         Configuration config = new Configuration( file, "Cucumber_Reports");
