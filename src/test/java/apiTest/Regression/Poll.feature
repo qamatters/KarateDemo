@@ -1,4 +1,4 @@
-@Test1234 @Smoke
+@Test1234
 
 Feature: Test Retry
 
