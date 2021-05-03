@@ -3,7 +3,7 @@ node {
         stage('Build') {
           try {
 
-          tool name: 'maven', type: 'maven'
+                     def mvnHome = tool name: 'maven', type: 'maven'
                       tool name: 'JDK 1.8', type: 'jdk'
                       sh '''
                                           echo "PATH = ${PATH}"
@@ -12,8 +12,7 @@ node {
 
             notifyBuild('STARTED')
             /* ... existing build steps ... */
-            git 'https://github.com/qamatters/KarateDemo.git'
-            sh 'mvn clean test -DargLine=\'-Dkarate.env=e2e\' -Dkarate.options="--tags @Smoke" -Dtest=CucumberReport -DfailIfNoTests=false'
+            sh "${mvnHome}/bin/mvn clean test"
 
           } catch (e) {
             // If there was an exception thrown, the build failed
