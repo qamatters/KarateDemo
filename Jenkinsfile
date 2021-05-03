@@ -10,7 +10,6 @@ node {
                                           echo "M2_HOME = ${M2_HOME}"
                          '''
 
---            notifyBuild("STARTED")
             /* ... existing build steps ... */
             sh "${mvnHome}/bin/mvn clean test -DargLine=\'-Dkarate.env=e2e\' -Dkarate.options=\"--tags @Smoke\" -Dtest=CucumberReport -DfailIfNoTests=false"
 
