@@ -24,8 +24,8 @@ pipeline {
                 always {
                     cucumber '**/target/karate-reports/*.json'
                     emailext (
-                          subject: subject,
-                          body: details,
+                          subject: 'Test Email',
+                          body: 'This is a test email',
                           recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']]
                         )
                 }
