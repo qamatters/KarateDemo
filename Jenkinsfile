@@ -6,6 +6,10 @@ node {
 
             tool name: 'maven', type: 'maven'
             tool name: 'JDK 1.8', type: 'jdk'
+             sh '''
+                                echo "PATH = ${PATH}"
+                                echo "M2_HOME = ${M2_HOME}"
+                '''
             sh 'mvn clean test -DargLine=\'-Dkarate.env=e2e\' -Dkarate.options="--tags @Smoke" -Dtest=CucumberReport -DfailIfNoTests=false'
 
           } catch (e) {
