@@ -3,7 +3,7 @@ node {
           try {
             notifyBuild('STARTED')
             /* ... existing build steps ... */
-            sh '${mvnHome}/mvn clean test -DargLine=\'-Dkarate.env=e2e\' -Dkarate.options="--tags @Smoke" -Dtest=CucumberReport -DfailIfNoTests=false'
+            sh 'mvn clean test -DargLine=\'-Dkarate.env=e2e\' -Dkarate.options="--tags @Smoke" -Dtest=CucumberReport -DfailIfNoTests=false'
 
           } catch (e) {
             // If there was an exception thrown, the build failed
