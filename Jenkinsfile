@@ -1,6 +1,5 @@
 node {
         stage ('Initialize') {
-            steps {
                 tools {
                         maven 'maven'
                         jdk 'JDK 1.8'
@@ -10,7 +9,7 @@ node {
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
                 '''
-            }
+
         }
         stage('Build') {
           try {
