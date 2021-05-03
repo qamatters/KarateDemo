@@ -1,9 +1,9 @@
 node {
         stage ('Initialize') {
-                tools {
-                        maven 'maven'
-                        jdk 'JDK 1.8'
-                    }
+--                tools {
+--                        maven 'maven'
+--                        jdk 'JDK 1.8'
+--                    }
 
                 sh '''
                     echo "PATH = ${PATH}"
