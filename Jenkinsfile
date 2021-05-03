@@ -26,7 +26,7 @@ pipeline {
                     emailext (
                           subject: 'Test Email',
                           body: 'This is a test email',
-                          recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']]
+                          recipientProviders: [[$class: 'RequesterRecipientProvider'], [$class: 'RequesterRecipientProvider']]
                         )
                 }
             }
