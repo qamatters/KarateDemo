@@ -26,7 +26,9 @@ node {
             cucumber '**/target/karate-reports/*.json'
             notifyBuild(currentBuild.result)
           }
+          }
 
+       }
 
          def notifyBuild(String buildStatus = 'STARTED') {
            // build status of null means successful
@@ -56,5 +58,3 @@ node {
                recipientProviders: [[$class: 'DevelopersRecipientProvider']]
              )
          }
-       }
-    }
