@@ -12,6 +12,7 @@ node {
 
             notifyBuild('STARTED')
             /* ... existing build steps ... */
+            git 'https://github.com/qamatters/KarateDemo.git'
             sh 'mvn clean test -DargLine=\'-Dkarate.env=e2e\' -Dkarate.options="--tags @Smoke" -Dtest=CucumberReport -DfailIfNoTests=false'
 
           } catch (e) {
