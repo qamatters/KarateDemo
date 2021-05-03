@@ -1,14 +1,9 @@
 node {
-
- tools {
-        maven 'maven'
-        jdk 'JDK 1.8'
-    }
         stage('Build') {
           try {
             notifyBuild('STARTED')
             /* ... existing build steps ... */
-            sh 'mvn clean test -DargLine=\'-Dkarate.env=e2e\' -Dkarate.options="--tags @Smoke" -Dtest=CucumberReport -DfailIfNoTests=false'
+            sh '${mvnHome}/bin/mvn clean test -DargLine=\'-Dkarate.env=e2e\' -Dkarate.options="--tags @Smoke" -Dtest=CucumberReport -DfailIfNoTests=false'
 
           } catch (e) {
             // If there was an exception thrown, the build failed
