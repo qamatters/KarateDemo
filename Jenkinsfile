@@ -48,7 +48,7 @@ node {
            }
            emailext (
                subject: subject,
-               body: readFile("cucumber-html-reports/overview-features.html"),
+               body: readFile("${env.BUILD_NUMBER}/cucumber-html-reports/overview-features.html"),
                to: 'testqamatters@gmail.com',
                 mimeType: 'text/html'
              )
