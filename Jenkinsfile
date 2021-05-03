@@ -1,11 +1,11 @@
 node {
-
-    tools {
-        maven 'maven'
-        jdk 'JDK 1.8'
-    }
         stage ('Initialize') {
             steps {
+                tools {
+                        maven 'maven'
+                        jdk 'JDK 1.8'
+                    }
+
                 sh '''
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
