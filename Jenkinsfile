@@ -1,14 +1,9 @@
 node {
 
-stage('Initialize') {
-  def M2_HOME = tool 'maven'
-  def PATH = tool 'JDK 1.8'
-  sh '''
-       echo "PATH = ${PATH}"
-       echo "M2_HOME = ${M2_HOME}"
-     '''
-
- }
+ tools {
+        maven 'maven'
+        jdk 'JDK 1.8'
+    }
         stage('Build') {
           try {
             notifyBuild('STARTED')
