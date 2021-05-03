@@ -51,6 +51,6 @@ node {
            emailext (
                subject: subject,
                body: details,
-               recipientProviders: [[$class: 'DevelopersRecipientProvider']]
+               recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']]
              )
          }
