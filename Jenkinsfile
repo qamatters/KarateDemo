@@ -16,10 +16,16 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'mvn clean test -DargLine=\'-Dkarate.env=e2e\' -Dkarate.options="--tags @Smoke" -Dtest=CucumberReport -DfailIfNoTests=false'
-                junit  '**/target/karate-reports/*.json'
+--                junit  '**/target/karate-reports/*.json'
 
                   }
             }
         }
+
+         post {
+                always {
+                    cucumber '**/target/karate-reports/karate-summary.html'
+                }
+            }
 
     }
