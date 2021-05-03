@@ -1,9 +1,12 @@
 node {
 
- environment {
-    M2_HOME = tool name: 'maven',
-    PATH = tool name: 'DK 1.8'
-}
+  def M2_HOME = tool 'maven'
+  def PATH = tool 'JDK 1.8'
+  sh '''
+       echo "PATH = ${PATH}"
+       echo "M2_HOME = ${M2_HOME}"
+     '''
+
 --        stage ('Initialize') {
 --                tools {
 --                        maven 'maven'
