@@ -16,6 +16,7 @@ node {
           } catch (e) {
             // If there was an exception thrown, the build failed
             currentBuild.result = "FAILED"
+            notifyBuild(currentBuild.result)
             throw e
           } finally {
             cucumber '**/target/karate-reports/*.json'
@@ -48,7 +49,7 @@ node {
            }
            emailext (
                subject: subject,
-               body: readFile("${env.BUILD_NUMBER}/cucumber-html-reports/overview-features.html"),
+               body: details,
                to: 'testqamatters@gmail.com',
                 mimeType: 'text/html'
              )
