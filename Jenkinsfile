@@ -4,11 +4,8 @@ node {
             notifyBuild('STARTED')
             /* ... existing build steps ... */
 
-
-            tool name: 'JDK 1.8', type: 'jdk'
-            tool name: 'maven', type: 'maven'
-
-            sh 'mvn clean test -DargLine=\'-Dkarate.env=e2e\' -Dkarate.options="--tags @Smoke" -Dtest=CucumberReport -DfailIfNoTests=false'
+            def mvnHome = tool name: 'maven', type: 'maven'
+            sh '${mvnHome}/bin/mvn clean test -DargLine=\'-Dkarate.env=e2e\' -Dkarate.options="--tags @Smoke" -Dtest=CucumberReport -DfailIfNoTests=false'
 
           } catch (e) {
             // If there was an exception thrown, the build failed
