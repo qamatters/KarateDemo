@@ -34,7 +34,7 @@ node {
            def colorCode = '#FF0000'
            def subject = "${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
            def summary = "${subject} (${env.BUILD_URL})"
-           def details = """<p>STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p> <br> <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>"""
+           def details = """<p>STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p> <br> <p>Check console output at:<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>;</p>"""
 
            // Override default values based on build status
            if (buildStatus == 'STARTED') {
@@ -49,7 +49,7 @@ node {
            }
            emailext (
                subject: subject,
-               body: details,
+               body: '${FILE,path="${env.BUILD_NUMBER}/cucumber-html-reports/overview-features.html"}',
                to: 'testqamatters@gmail.com'
              )
          }
