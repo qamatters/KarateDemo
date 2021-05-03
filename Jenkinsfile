@@ -1,16 +1,21 @@
 node {
-        stage ('Initialize') {
+
+ environment {
+    M2_HOME = tool name: 'maven',
+    PATH = tool name: 'DK 1.8',
+}
+--        stage ('Initialize') {
 --                tools {
 --                        maven 'maven'
 --                        jdk 'JDK 1.8'
 --                    }
-
-                sh '''
-                    echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
-                '''
-
-        }
+--
+--                sh '''
+--                    echo "PATH = ${PATH}"
+--                    echo "M2_HOME = ${M2_HOME}"
+--                '''
+--
+--        }
         stage('Build') {
           try {
             notifyBuild('STARTED')
