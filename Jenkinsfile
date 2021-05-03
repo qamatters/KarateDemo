@@ -4,18 +4,16 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
+                echo 'Building..'''
+                 try {
+                sh 'mvn clean test -DargLine=\'-Dkarate.env=e2e\' -Dkarate.options="--tags @Smoke" -Dtest=CucumberReport -DfailIfNoTests=false'
+                     } finally {
+
+                        junit  '**/target/surefire-reports/*.xml'
+
+                    }
             }
         }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
+
     }
 }
