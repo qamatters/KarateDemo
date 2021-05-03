@@ -22,7 +22,7 @@ pipeline {
 
          post {
                 always {
-                    cucumber '**/target/karate-reports/karate-summary.html'
+                    cucumber '**/target/karate-reports/*.json'
                 }
             }
 
