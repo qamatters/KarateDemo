@@ -2,7 +2,7 @@ node {
 
  environment {
     M2_HOME = tool name: 'maven',
-    PATH = tool name: 'DK 1.8',
+    PATH = tool name: 'DK 1.8'
 }
 --        stage ('Initialize') {
 --                tools {
