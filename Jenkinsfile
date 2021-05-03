@@ -49,7 +49,7 @@ node {
            }
            emailext (
                subject: subject,
-               body: '${FILE,path="${env.BUILD_NUMBER}/cucumber-html-reports/overview-features.html"}',
+               body: '${FILE,path="cucumber-html-reports/overview-features.html"}',
                to: 'testqamatters@gmail.com',
                 mimeType: 'text/html'
              )
