@@ -24,6 +24,10 @@ node {
           } finally {
             cucumber '**/target/karate-reports/*.json'
             notifyBuild(currentBuild.result)
+           fileExists 'Summary.txt'
+           readFile 'Summary.txt'
+           awk '{print $1; exit}'
+
           }
         }
 
