@@ -11,7 +11,7 @@ node {
                          '''
 
             /* ... existing build steps ... */
-            sh "${mvnHome}/bin/mvn clean"
+         //   sh "${mvnHome}/bin/mvn clean" -> if need to clear target folder
             sh "${mvnHome}/bin/mvn clean test -DargLine=\'-Dkarate.env=e2e\' -Dkarate.options=\"--tags @Smoke\" -Dtest=CucumberReport -DfailIfNoTests=false"
 
           } catch (e) {
