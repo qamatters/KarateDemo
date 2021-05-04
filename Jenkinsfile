@@ -22,6 +22,7 @@ node {
           } finally {
             cucumber '**/target/karate-reports/*.json'
             notifyBuild(currentBuild.result)
+            cleanWs()
           }
         }
 
