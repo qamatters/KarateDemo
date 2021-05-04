@@ -30,6 +30,7 @@ public class reportParser {
 
             File summaryFile = new File("Summary.txt");
             if(summaryFile.exists()) {
+                System.out.println("File exist, deleting it" );
              summaryFile.delete();
              new File("Summary.txt");
             }
