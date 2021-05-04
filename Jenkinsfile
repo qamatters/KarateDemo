@@ -26,7 +26,11 @@ node {
             notifyBuild(currentBuild.result)
            fileExists 'Summary.txt'
            readFile 'Summary.txt'
+           sh '''
+                 set +x
            awk '{print $1; exit}'
+
+           '''
 
           }
         }
