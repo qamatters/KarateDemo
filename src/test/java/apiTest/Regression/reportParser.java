@@ -21,7 +21,7 @@ public class reportParser {
             Elements totalPassScenariosInReport = htmlFile.select("#tablesorter > tfoot > tr:nth-child(1) > td:nth-child(8)");
             String totalPassScenarios = totalPassScenariosInReport.text();
 
-            Elements totalFailScenariosInReport = htmlFile.select("#tablesorter > tfoot > tr:nth-child(1) > td:nth-child(8)");
+            Elements totalFailScenariosInReport = htmlFile.select("#tablesorter > tfoot > tr:nth-child(1) > td:nth-child(9)");
             String totalFailScenarios = totalPassScenariosInReport.text();
 
             System.out.println("Total Scenarios :" +totalScenarios );
@@ -32,8 +32,6 @@ public class reportParser {
             if(summaryFile.exists()) {
              summaryFile.delete();
              new File("Summary.txt");
-            } else {
-                new File("Summary.txt");
             }
             FileWriter writer = new FileWriter(summaryFile);
             writer.write(totalScenarios);
