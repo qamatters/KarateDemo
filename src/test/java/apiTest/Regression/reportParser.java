@@ -22,7 +22,7 @@ public class reportParser {
             String totalPassScenarios = totalPassScenariosInReport.text();
 
             Elements totalFailScenariosInReport = htmlFile.select("#tablesorter > tfoot > tr:nth-child(1) > td:nth-child(9)");
-            String totalFailScenarios = totalPassScenariosInReport.text();
+            String totalFailScenarios = totalFailScenariosInReport.text();
 
             System.out.println("Total Scenarios :" +totalScenarios );
             System.out.println("Total Pass Scenarios :" +totalPassScenarios );
