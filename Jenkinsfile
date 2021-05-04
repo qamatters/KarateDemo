@@ -30,7 +30,7 @@ node {
                  set +x
 
 
-             echo "TotalPass = ${awk 'NR==1{print $1}' /file}"
+             echo "TotalPass = ${awk 'NR==1{print $1}' file}"
 
            '''
 
