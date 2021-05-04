@@ -29,8 +29,8 @@ node {
            sh '''
                  set +x
 
-             def totalPass = awk 'NR==1{print $1}' /file
-             echo "TotalPass = ${totalPass}"
+
+             echo "TotalPass = ${awk 'NR==1{print $1}' /file}"
 
            '''
 
