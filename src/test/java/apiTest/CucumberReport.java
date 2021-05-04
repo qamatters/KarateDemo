@@ -9,12 +9,14 @@ import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import static apiTest.Regression.reportParser.parseReport;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
@@ -27,7 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         public class CucumberReport {
 
     @Test
-    void testParallel() {
+    void testParallel() throws IOException {
         // if in windows, change // to \\
         String karateOutputPath = "target/karate-reports";
         Results results = Runner.path("classpath:apiTest//Regression")
@@ -38,8 +40,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         assertEquals(0, results.getFailCount(), results.getErrorMessages());
     }
 
-
-    public static void generateReport(String karateOutputPath) {
+    public static void generateReport(String karateOutputPath) throws IOException {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy_MM_dd_HH_mm_ss");
         LocalDateTime now = LocalDateTime.now();
         String currentDateTime = dtf.format(now);
@@ -48,12 +49,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         jsonFiles.forEach(file -> jsonPaths.add(file.getAbsolutePath()));
         String currentDir = System.getProperty("user.dir");
         // if in windows, change // to \\
-        String folderPath= currentDir + "//Reports// " + "TestCaseExecution_ " +currentDateTime;
+        String folderPath= currentDir + "/Reports/" + "TestCaseExecution_" +currentDateTime;
         File file = new File (folderPath);
         file.mkdirs();
         Configuration config = new Configuration( file, "Cucumber_Reports");
         ReportBuilder reportBuilder = new ReportBuilder(jsonPaths, config);
         reportBuilder.generateReports();
+        parseReport(folderPath);
+
     }
 
 }

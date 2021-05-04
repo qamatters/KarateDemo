@@ -20,9 +20,10 @@ node {
             throw e
           } finally {
             cucumber '**/target/karate-reports/*.json'
+            cat Summary.txt
             notifyBuild(currentBuild.result)
           }
-          }
+        }
 
        }
 
