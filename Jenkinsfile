@@ -1,6 +1,8 @@
 node {
 
         stage('Build') {
+         git 'https://github.com/qamatters/KarateDemo.git'
+
           try {
 
                      def mvnHome = tool name: 'maven', type: 'maven'
@@ -11,7 +13,7 @@ node {
                          '''
 
             /* ... existing build steps ... */
-         //   sh "${mvnHome}/bin/mvn clean" -> if need to clear target folder
+            sh "${mvnHome}/bin/mvn clean test"
             sh "${mvnHome}/bin/mvn clean test -DargLine=\'-Dkarate.env=e2e\' -Dkarate.options=\"--tags @Smoke\" -Dtest=CucumberReport -DfailIfNoTests=false"
 
           } catch (e) {
@@ -22,7 +24,6 @@ node {
           } finally {
             cucumber '**/target/karate-reports/*.json'
             notifyBuild(currentBuild.result)
-  //          cleanWs() -> If need to wipe our workspace after build run
           }
         }
 
@@ -36,7 +37,7 @@ node {
            def colorCode = '#FF0000'
            def subject = "${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
            def summary = "${subject} (${env.BUILD_URL})"
-           def details = """<p>Completed: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p> <br> <p>Check console output at:<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>;</p>"""
+           def details = """<p>STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p> <br> <p>Check console output at:<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>;</p>"""
 
            // Override default values based on build status
            if (buildStatus == 'STARTED') {
