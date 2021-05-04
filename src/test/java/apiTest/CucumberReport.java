@@ -55,6 +55,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         Configuration config = new Configuration( file, "Cucumber_Reports");
         ReportBuilder reportBuilder = new ReportBuilder(jsonPaths, config);
         reportBuilder.generateReports();
+        System.out.println("Generating summary" );
         parseReport(folderPath);
 
     }
