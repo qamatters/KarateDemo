@@ -24,15 +24,6 @@ node {
           } finally {
             cucumber '**/target/karate-reports/*.json'
             notifyBuild(currentBuild.result)
-           fileExists 'Summary.txt'
-           def file = readFile 'Summary.txt'
-           sh '''
-                 set +x
-
-
-             echo "TotalPass = ${awk 'NR==1{print $1}' file}"
-
-           '''
 
           }
         }
