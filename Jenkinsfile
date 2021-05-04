@@ -1,7 +1,6 @@
 node {
 
         stage('Build') {
-        cleanWs()
           try {
 
                      def mvnHome = tool name: 'maven', type: 'maven'
@@ -23,7 +22,7 @@ node {
           } finally {
             cucumber '**/target/karate-reports/*.json'
             notifyBuild(currentBuild.result)
-
+  //          cleanWs() -> If need to wipe our workspace after build run
           }
         }
 
