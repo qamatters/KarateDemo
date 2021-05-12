@@ -4,19 +4,19 @@ node {
 
           try {
 
-                     def mvnHome = tool name: 'maven', type: 'maven'
-                      tool name: 'JDK 1.8', type: 'jdk'
-                      // replace sh with bat for windows and vice versa
-                      bat '''
-                                          echo "PATH = ${PATH}"
-                                          echo "M2_HOME = ${M2_HOME}"
-                         '''
+//                      def mvnHome = tool name: 'maven', type: 'maven'
+//                       tool name: 'JDK 1.8', type: 'jdk'
+//                       // replace sh with bat for windows and vice versa
+//                       bat '''
+//                                           echo "PATH = ${PATH}"
+//                                           echo "M2_HOME = ${M2_HOME}"
+//                          '''
 
             /* ... existing build steps ... */
 
             println "This is inside try block"
 
-            bat "${mvnHome}/bin/mvn clean test -DargLine=\'-Dkarate.env=e2e\' -Dkarate.options=\"--tags @Smoke\" -Dtest=CucumberReport -DfailIfNoTests=false"
+            bat "mvn clean test -DargLine=\'-Dkarate.env=e2e\' -Dkarate.options=\"--tags @Smoke\" -Dtest=CucumberReport -DfailIfNoTests=false"
 
           } catch (e) {
             // If there was an exception thrown, the build failed
