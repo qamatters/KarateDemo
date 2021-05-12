@@ -24,7 +24,7 @@ node {
             println "-------------------------------------------------------------------------------------"
             bat 'set'
             println "-------------------------------------------------------------------------------------"
-             bat "mvn clean test -DargLine=\'-Dkarate.env=e2e\' -Dkarate.options=\"--tags @Smoke\" -Dtest=CucumberReport -DfailIfNoTests=false"
+             bat "mvn clean test -DargLine=\'-Dkarate.env=${params.Tags}\' -Dkarate.options=\"--tags ${params.Environment}\" -Dtest=CucumberReport -DfailIfNoTests=false"
             }
 
           } catch (e) {
