@@ -12,8 +12,10 @@ node {
                                           echo "M2_HOME = ${M2_HOME}"
                          '''
             /* ... existing build steps ... */
+            sh 'env'
             sh "${mvnHome}/bin/mvn clean test -DargLine=\'-Dkarate.env=e2e\' -Dkarate.options=\"--tags @Smoke\" -Dtest=CucumberReport -DfailIfNoTests=false"
             } else {
+            bat 'set'
              bat "mvn clean test -DargLine=\'-Dkarate.env=e2e\' -Dkarate.options=\"--tags @Smoke\" -Dtest=CucumberReport -DfailIfNoTests=false"
             }
 
