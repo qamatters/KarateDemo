@@ -16,10 +16,15 @@ node {
                                           echo "M2_HOME = ${M2_HOME}"
                          '''
             /* ... existing build steps ... */
+
             println "-------------------------------------------------------------------------------------"
+            println "Tag is ${params.Tags}"
+            println "Environment is ${parameters.Environment}"
+             println "-------------------------------------------------------------------------------------"
+
             sh 'env'
             println "-------------------------------------------------------------------------------------"
-            sh "${mvnHome}/bin/mvn clean test -DargLine=\'-Dkarate.env=${params.Tags}\' -Dkarate.options=\"--tags ${params.Environment}\" -Dtest=CucumberReport -DfailIfNoTests=false"
+            sh "${mvnHome}/bin/mvn clean test -DargLine=\'-Dkarate.env=${params.Environment}\' -Dkarate.options=\"--tags ${params.Tags}\" -Dtest=CucumberReport -DfailIfNoTests=false"
             } else {
             println "-------------------------------------------------------------------------------------"
             bat 'set'
