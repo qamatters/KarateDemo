@@ -1,8 +1,15 @@
 node {
- parameters {
-                           choice(name: 'Tags', choices: ['@Smoke', '@Regression', '@@Test123'], description: 'Run with different Tags')
-                           choice(name: 'Environment', choices: ['@Stage', 'e2e'], description: 'Run with different Environments')
- }
+
+ properties(
+    [
+        parameters(
+            [
+            string(defaultValue: '@Smoke', name: 'Tags'),
+             string(defaultValue: 'e2e', name: 'Environment')
+             ]
+            )
+    ]
+  )
         stage('Build') {
          git 'https://github.com/qamatters/KarateDemo.git'
           try {
