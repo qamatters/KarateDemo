@@ -4,19 +4,18 @@ node {
 
           try {
 
-//                      def mvnHome = tool name: 'maven', type: 'maven'
-//                       tool name: 'JDK 1.8', type: 'jdk'
-//                       // replace sh with bat for windows and vice versa
-//                       bat '''
-//                                           echo "PATH = ${PATH}"
-//                                           echo "M2_HOME = ${M2_HOME}"
-//                          '''
-
+          if(sUnix()) {
+                   def mvnHome = tool name: 'maven', type: 'maven'
+                      tool name: 'JDK 1.8', type: 'jdk'
+                      sh '''
+                                          echo "PATH = ${PATH}"
+                                          echo "M2_HOME = ${M2_HOME}"
+                         '''
             /* ... existing build steps ... */
-
-            println "This is inside try block"
-
-            bat "mvn clean test -DargLine=\'-Dkarate.env=e2e\' -Dkarate.options=\"--tags @Smoke\" -Dtest=CucumberReport -DfailIfNoTests=false"
+            sh "${mvnHome}/bin/mvn clean test -DargLine=\'-Dkarate.env=e2e\' -Dkarate.options=\"--tags @Smoke\" -Dtest=CucumberReport -DfailIfNoTests=false"
+            } else {
+             bat "mvn clean test -DargLine=\'-Dkarate.env=e2e\' -Dkarate.options=\"--tags @Smoke\" -Dtest=CucumberReport -DfailIfNoTests=false"
+            }
 
           } catch (e) {
             // If there was an exception thrown, the build failed
@@ -29,7 +28,6 @@ node {
           }
         }
        }
-
          def notifyBuild(String buildStatus = 'STARTED') {
            // build status of null means successful
            buildStatus = buildStatus ?: 'SUCCESS'
