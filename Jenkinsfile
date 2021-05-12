@@ -1,5 +1,4 @@
 node {
-
         stage('Build') {
          git 'https://github.com/qamatters/KarateDemo.git'
 
@@ -7,14 +6,15 @@ node {
 
                      def mvnHome = tool name: 'maven', type: 'maven'
                       tool name: 'JDK 1.8', type: 'jdk'
-                      sh '''
+                      // replace sh with bat for windows and vice versa
+                      bat '''
                                           echo "PATH = ${PATH}"
                                           echo "M2_HOME = ${M2_HOME}"
                          '''
 
             /* ... existing build steps ... */
 
-            sh "${mvnHome}/bin/mvn clean test -DargLine=\'-Dkarate.env=e2e\' -Dkarate.options=\"--tags @Smoke\" -Dtest=CucumberReport -DfailIfNoTests=false"
+            bat "${mvnHome}/bin/mvn clean test -DargLine=\'-Dkarate.env=e2e\' -Dkarate.options=\"--tags @Smoke\" -Dtest=CucumberReport -DfailIfNoTests=false"
 
           } catch (e) {
             // If there was an exception thrown, the build failed
@@ -24,10 +24,8 @@ node {
           } finally {
             cucumber '**/target/karate-reports/*.json'
             notifyBuild(currentBuild.result)
-
           }
         }
-
        }
 
          def notifyBuild(String buildStatus = 'STARTED') {
