@@ -14,6 +14,8 @@ node {
 
             /* ... existing build steps ... */
 
+            println "This is inside try block"
+
             bat "${mvnHome}/bin/mvn clean test -DargLine=\'-Dkarate.env=e2e\' -Dkarate.options=\"--tags @Smoke\" -Dtest=CucumberReport -DfailIfNoTests=false"
 
           } catch (e) {
