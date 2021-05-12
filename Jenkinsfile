@@ -1,13 +1,13 @@
 node {
+
+  parameters {
+                           choice(name: 'Tags', choices: ['@Smoke', '@Regression', '@@Test123'], description: 'Run with different Tags')
+                           choice(name: 'Environment', choices: ['@Stage', 'e2e'], description: 'Run with different Environments')
+              }
+
         stage('Build') {
          git 'https://github.com/qamatters/KarateDemo.git'
           try {
-
-           parameters {
-                           choice(name: 'Tags', choices: ['@Smoke', '@Regression', '@@Test123'], description: 'Run with different Tags')
-                           choice(name: 'Environment', choices: ['@Stage', 'e2e'], description: 'Run with different Environments')
-                       }
-
           if(isUnix()) {
                    def mvnHome = tool name: 'maven', type: 'maven'
                       tool name: 'JDK 1.8', type: 'jdk'
@@ -19,7 +19,7 @@ node {
 
             println "-------------------------------------------------------------------------------------"
             println "Tag is ${params.Tags}"
-            println "Environment is ${parameters.Environment}"
+            println "Environment is ${params.Environment}"
              println "-------------------------------------------------------------------------------------"
 
             sh 'env'
