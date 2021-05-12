@@ -2,8 +2,12 @@ node {
         stage('Build') {
          git 'https://github.com/qamatters/KarateDemo.git'
 
-          try {
+          parameters {
+                 choice(name: 'Tags', choices: ['@Smoke', '@Regression', '@@Test123'], description: 'Run with different Tags')
+                 choice(name: 'Environment', choices: ['@Stage', 'e2e'], description: 'Run with different Environments')
+             }
 
+          try {
           if(isUnix()) {
                    def mvnHome = tool name: 'maven', type: 'maven'
                       tool name: 'JDK 1.8', type: 'jdk'
@@ -43,6 +47,7 @@ node {
            def subject = "${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
            def summary = "${subject} (${env.BUILD_URL})"
            def details = """<p>STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p> <br> <p>Check console output at:<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>;</p>"""
+
 
            // Override default values based on build status
            if (buildStatus == 'STARTED') {
