@@ -1,3 +1,5 @@
+pipeline {
+
  parameters {
                            choice(name: 'Tags', choices: ['@Smoke', '@Regression', '@@Test123'], description: 'Run with different Tags')
                            choice(name: 'Environment', choices: ['@Stage', 'e2e'], description: 'Run with different Environments')
@@ -70,3 +72,4 @@ node {
                 mimeType: 'text/html'
              )
          }
+}
