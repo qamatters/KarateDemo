@@ -19,7 +19,7 @@ node {
             println "-------------------------------------------------------------------------------------"
             sh 'env'
             println "-------------------------------------------------------------------------------------"
-            sh "${mvnHome}/bin/mvn clean test -DargLine=\'-Dkarate.env=e2e\' -Dkarate.options=\"--tags @Smoke\" -Dtest=CucumberReport -DfailIfNoTests=false"
+            sh "${mvnHome}/bin/mvn clean test -DargLine=\'-Dkarate.env=${params.Tags}\' -Dkarate.options=\"--tags ${params.Environment}\" -Dtest=CucumberReport -DfailIfNoTests=false"
             } else {
             println "-------------------------------------------------------------------------------------"
             bat 'set'
