@@ -4,7 +4,7 @@ node {
 
           try {
 
-          if(sUnix()) {
+          if(isUnix()) {
                    def mvnHome = tool name: 'maven', type: 'maven'
                       tool name: 'JDK 1.8', type: 'jdk'
                       sh '''
