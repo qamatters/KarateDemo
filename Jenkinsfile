@@ -47,7 +47,8 @@ node {
             notifyBuild(currentBuild.result)
             throw e
           } finally {
-          if(fileExists 'Summary.txt')
+          def fileexist = fileExists 'Summary.txt'
+          if(fileexist)
           {
            String summaryFileContent =  readFile 'Summary.txt'
            println "${summaryFileContent}"
