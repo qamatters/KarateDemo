@@ -90,7 +90,7 @@ node {
            }
            emailext (
                subject: subject,
-               body: "${FILE.path = "target/karate-reports/karate-summary.html"}",
+               body: '${FILE,path = "**/target/karate-reports/karate-summary.html"}',
                to: 'testqamatters@gmail.com',
                 mimeType: 'text/html'
              )
