@@ -52,11 +52,11 @@ node {
           {
            String summaryFileContent =  readFile 'Summary.txt'
            println "${summaryFileContent}"
-           def Total_Scenarios   = summaryFileContent[0]
+           Total_Scenarios   = summaryFileContent[0]
            print "Total_Scenarios: ${Total_Scenarios}"
-           def Total_Pass_Scenarios = summaryFileContent[1]
+           Total_Pass_Scenarios = summaryFileContent[1]
            print "Total_Pass_Scenarios: ${Total_Pass_Scenarios}"
-           def Total_Fail_Scenario = summaryFileContent[2]
+           Total_Fail_Scenario = summaryFileContent[2]
            print "Total_Fail_Scenario= ${Total_Pass_Scenarios}"
           }
             cucumber '**/target/karate-reports/*.json'
