@@ -4,8 +4,9 @@ node {
     [
         parameters(
             [
-            string(defaultValue: '@Smoke', name: 'Tags'),
-             string(defaultValue: 'e2e', name: 'Environment')
+             string(defaultValue: '@Smoke', name: 'Tags'),
+             string(defaultValue: 'e2e', name: 'Environment'),
+             choice(name: 'Environment', choices:['e2e', 'stage', 'dev'] ,defaultValue: 'e2e')
              ]
             )
     ]
@@ -34,7 +35,7 @@ node {
             println "-------------------------------------------------------------------------------------"
             bat 'set'
             println "-------------------------------------------------------------------------------------"
-             bat "mvn clean test -DargLine=\'-Dkarate.env=e2e\' -Dkarate.options=\"--tags @Smoke\" -Dtest=CucumberReport -DfailIfNoTests=false"
+             bat "mvn clean test -DargLine=\'-Dkarate.env=${params.Environment}\' -Dkarate.options=\"--tags ${params.Tags}\" -Dtest=CucumberReport -DfailIfNoTests=false"
             }
 
           } catch (e) {
