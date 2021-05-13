@@ -52,6 +52,9 @@ node {
           {
            String summaryFileContent =  readFile 'Summary.txt'
            println "${summaryFileContent}"
+           def Total_Scenarios   = summaryFileContent[0]
+           def Total_Pass_Scenarios = summaryFileContent[1]
+           def Total_Fail_Scenario = summaryFileContent[2]
           }
             cucumber '**/target/karate-reports/*.json'
             notifyBuild(currentBuild.result)
@@ -67,6 +70,9 @@ node {
            def subject = "${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
            def summary = "${subject} (${env.BUILD_URL})"
            def details = """<p>STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p> <br> <p>Check console output at:<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>;</p>"""
+           def Summary = """Total Scenario : ${Total_Scenarios}, Total_Pass_Scenarios: ${Total_Pass_Scenarios}, Total_Scenarios: ${Total_Fail_Scenario}"""
+
+           println "${Summary}"
 
            // Override default values based on build status
            if (buildStatus == 'STARTED') {
