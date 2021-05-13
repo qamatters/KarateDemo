@@ -14,6 +14,7 @@ node {
         stage('Build') {
          git 'https://github.com/qamatters/KarateDemo.git'
           try {
+
           if(isUnix()) {
                    def mvnHome = tool name: 'maven', type: 'maven'
                       tool name: 'JDK 1.8', type: 'jdk'
@@ -26,24 +27,31 @@ node {
             println "-------------------------------------------------------------------------------------"
             println "Tag is ${params.Tags}"
             println "Environment is ${params.Environment}"
-             println "-------------------------------------------------------------------------------------"
 
+            println "----------------------------Print Environment variables in Linux machine---------------------------------------------------------"
             sh 'env'
             println "-------------------------------------------------------------------------------------"
             sh "${mvnHome}/bin/mvn clean test -DargLine=\'-Dkarate.env=${params.Environment}\' -Dkarate.options=\"--tags ${params.Tags}\" -Dtest=CucumberReport -DfailIfNoTests=false"
+
             } else {
-            println "-------------------------------------------------------------------------------------"
+
+            println "------------------------------Print Environment variables in Windows machine-------------------------------------------------------"
             bat 'set'
             println "-------------------------------------------------------------------------------------"
-             bat "mvn clean test -DargLine=\'-Dkarate.env=${params.Environment}\' -Dkarate.options=\"--tags ${params.Tags}\" -Dtest=CucumberReport -DfailIfNoTests=false"
-            }
+            bat "mvn clean test -DargLine=\'-Dkarate.env=${params.Environment}\' -Dkarate.options=\"--tags ${params.Tags}\" -Dtest=CucumberReport -DfailIfNoTests=false"
+          }
 
-          } catch (e) {
+        } catch (e) {
             // If there was an exception thrown, the build failed
             currentBuild.result = "FAILED"
             notifyBuild(currentBuild.result)
             throw e
           } finally {
+          if(fileExists 'Summary.txt')
+          {
+           String summaryFileContent =  readFile 'Summary.txt'
+           println "${summaryFileContent}"
+          }
             cucumber '**/target/karate-reports/*.json'
             notifyBuild(currentBuild.result)
           }
@@ -58,7 +66,6 @@ node {
            def subject = "${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
            def summary = "${subject} (${env.BUILD_URL})"
            def details = """<p>STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p> <br> <p>Check console output at:<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>;</p>"""
-
 
            // Override default values based on build status
            if (buildStatus == 'STARTED') {
