@@ -72,7 +72,7 @@ node {
            def colorCode = '#FF0000'
            def subject = "${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
            def summary = "${subject} (${env.BUILD_URL})"
-           def report = "${env.BUILD_URL}"+ "${env.JOB_NAME}" + "[${env.BUILD_NUMBER}]" + "cucumber-html-reports/overview-features.html"
+           def report = "${env.JOB_NAME}" + "[${env.BUILD_NUMBER}]" + "/cucumber-html-reports/overview-features.html"
            def details =
            """
            <p>
