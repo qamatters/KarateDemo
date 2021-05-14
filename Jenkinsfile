@@ -77,14 +77,14 @@ node {
            println "Summary: ${Summary}"
 
            def SummaryTable =
-
            """
-
+           <!DOCTYPE html>
+           <html>
           <head><
            style>
-           table, th, td
-           {
-           border: 1px solid black;border-collapse: collapse;
+           table, th, td {
+           border: 1px solid black;
+           border-collapse: collapse;
            }
            </style>
            </head>
@@ -93,9 +93,8 @@ node {
            <tr><td>${Total_Scenarios}</td><td>${Total_Pass_Scenarios}</td><td>${Total_Fail_Scenarios}</td></tr>
            </table>
            </body>
-
+           </html>
            """
-
            // Override default values based on build status
            if (buildStatus == 'STARTED') {
              color = 'YELLOW'
