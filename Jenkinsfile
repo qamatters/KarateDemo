@@ -72,9 +72,18 @@ node {
            def colorCode = '#FF0000'
            def subject = "${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
            def summary = "${subject} (${env.BUILD_URL})"
-           def details = """<p>Completed: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p> <br> <p>Check console output at:<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>;</p>"""
-           def Summary = """Total Scenario : ${Total_Scenarios}, Total_Pass_Scenarios: ${Total_Pass_Scenarios}, Total_Scenarios: ${Total_Fail_Scenarios}"""
-           println "Summary: ${Summary}"
+           def details =
+
+           """
+           <p>
+           BuildNmae:${env.JOB_NAME}
+           <br>
+           BUILD_URL:${env.BUILD_URL}
+           <br>
+           Build_Status:${buildStatus}
+           Check console output at:<a href='${env.BUILD_URL}'>${env.JOB_NAME}[${env.BUILD_NUMBER}]</a>
+           </p>
+           """
 
            def SummaryTable =
            """
@@ -91,7 +100,6 @@ node {
            </style>
            </head>
            <body>
-
            <h2>$details}</h2>
            <br>
 
