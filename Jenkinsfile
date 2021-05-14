@@ -57,7 +57,7 @@ node {
            Total_Pass_Scenarios = summaryFileContent[1]
            print "Total_Pass_Scenarios: ${Total_Pass_Scenarios}"
            Total_Fail_Scenario = summaryFileContent[2]
-           print "Total_Fail_Scenario= ${Total_Pass_Scenarios}"
+           print "Total_Fail_Scenario= ${Total_Fail_Scenarios}"
           }
             cucumber '**/target/karate-reports/*.json'
             notifyBuild(currentBuild.result)
@@ -89,7 +89,7 @@ node {
            }
            emailext (
                subject: subject,
-               body: '${FILE, path = "**/target/karate-reports/karate-summary.html"} <head><style>table, th, td {border: 1px solid black;border-collapse: collapse;}</style></head><body><table><tr><th>Total Scenarios</th><th>Total Pass</th><th>Total Fail</th></tr> <tr><td>8</td><td>8</td><td>0</td></tr></table></body>',
+               body: '${FILE, path = "**/target/karate-reports/karate-summary.html"} <head><style>table, th, td {border: 1px solid black;border-collapse: collapse;}</style></head><body><table><tr><th>Total_Scenarios</th><th>Total_Pass_Scenario</th><th>Total_Fail_Scenario</th></tr> <tr><td>${Total_Scenarios}</td><td>${Total_Pass_Scenarios}</td><td>${Total_Fail_Scenarios}</td></tr></table></body>',
                to: 'testqamatters@gmail.com',
                 mimeType: 'text/html'
              )
