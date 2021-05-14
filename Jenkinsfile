@@ -98,9 +98,9 @@ node {
            </style>
            </head>
            <body>
-           $details}
+           $details
            <br>
-           <b>Automation Summary Report</b>
+           <b>Automation Summary Report:</b>
            <table>
              <tr>
                <th>Total_Scenarios</th>
