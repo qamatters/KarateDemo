@@ -82,6 +82,7 @@ node {
            Build_Status:${buildStatus}
            </p>
            """
+
            def SummaryTable =
            """
            <!DOCTYPE html>
@@ -97,7 +98,7 @@ node {
            </style>
            </head>
            <body>
-           <h2>$details}</h2>
+           $details}
            <br>
            <table>
              <tr>
