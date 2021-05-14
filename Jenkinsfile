@@ -80,17 +80,31 @@ node {
            """
            <!DOCTYPE html>
            <html>
-          <head><
+           <head>
            <style>
            table, th, td {
-           border: 1px solid black;
-           border-collapse: collapse;
+             border: 1px solid black;
            }
+           td,th {
+                      text-align: center;
+            }
            </style>
            </head>
            <body>
-           <table><tr><th>Total_Scenarios</th><th>Total_Pass_Scenarios</th><th>Total_Fail_Scenarios</th></tr>
-           <tr><td>${Total_Scenarios}</td><td>${Total_Pass_Scenarios}</td><td>${Total_Fail_Scenarios}</td></tr>
+
+           <h2>Add a border to a table:</h2>
+
+           <table>
+             <tr>
+               <th>Total_Scenarios</th>
+               <th>Total_Pass_Scenarios</th>
+               <th>Total_Fail_Scenarios</th>
+             </tr>
+             <tr>
+               <td>${Total_Scenarios}</td>
+               <td>${Total_Pass_Scenarios}</td>
+               <td>${Total_Fail_Scenarios}</td>
+             </tr>
            </table>
            </body>
            </html>
