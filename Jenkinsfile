@@ -65,7 +65,6 @@ node {
         }
        }
          def notifyBuild(String buildStatus = 'STARTED') {
-
            // build status of null means successful
            buildStatus = buildStatus ?: 'SUCCESS'
            // Default values
@@ -90,7 +89,7 @@ node {
            }
            emailext (
                subject: subject,
-               body: '${FILE,path = "**/target/karate-reports/karate-summary.html"}',
+               body: '${FILE, path = "**/target/karate-reports/karate-summary.html"} <head><style>table, th, td {border: 1px solid black;border-collapse: collapse;}</style></head><body><table><tr><th>Total Scenarios</th><th>Total Pass</th><th>Total Fail</th></tr> <tr><td>8</td><td>8</td><td>0</td></tr></table></body>',
                to: 'testqamatters@gmail.com',
                 mimeType: 'text/html'
              )
