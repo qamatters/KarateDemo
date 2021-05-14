@@ -75,11 +75,11 @@ node {
            def details =
            """
            <p>
-           Build_Nmae:${env.JOB_NAME}
+           <b>Build_Nmae</b>:${env.JOB_NAME}
            <br>
-           BUILD_URL:<a href='${env.BUILD_URL}'>${env.JOB_NAME}[${env.BUILD_NUMBER}]</a>
+           <b>BUILD_URL</b>:<a href='${env.BUILD_URL}'>${env.JOB_NAME}[${env.BUILD_NUMBER}]</a>
            <br>
-           Build_Status:${buildStatus}
+           <b>Build_Status</b>:${buildStatus}
            </p>
            """
 
@@ -100,6 +100,7 @@ node {
            <body>
            $details}
            <br>
+           <b>Automation Summary Report</b>
            <table>
              <tr>
                <th>Total_Scenarios</th>
