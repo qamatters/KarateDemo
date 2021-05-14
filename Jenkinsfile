@@ -80,7 +80,7 @@ node {
            <br>
            <b>BUILD_URL</b>:<a href='${env.BUILD_URL}'>${env.JOB_NAME}[${env.BUILD_NUMBER}]</a>
            <br>
-           <b>Report_URL</b>:{report}
+           <b>Report_URL</b>:${report}
            <br>
            <b>Build_Status</b>:${buildStatus}
            </p>
