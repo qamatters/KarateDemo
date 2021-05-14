@@ -73,18 +73,15 @@ node {
            def subject = "${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
            def summary = "${subject} (${env.BUILD_URL})"
            def details =
-
            """
            <p>
-           BuildNmae:${env.JOB_NAME}
+           Build_Nmae:${env.JOB_NAME}
            <br>
-           BUILD_URL:${env.BUILD_URL}
+           BUILD_URL:<a href='${env.BUILD_URL}'>${env.JOB_NAME}[${env.BUILD_NUMBER}]</a>
            <br>
            Build_Status:${buildStatus}
-           Check console output at:<a href='${env.BUILD_URL}'>${env.JOB_NAME}[${env.BUILD_NUMBER}]</a>
            </p>
            """
-
            def SummaryTable =
            """
            <!DOCTYPE html>
@@ -102,7 +99,6 @@ node {
            <body>
            <h2>$details}</h2>
            <br>
-
            <table>
              <tr>
                <th>Total_Scenarios</th>
