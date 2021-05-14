@@ -91,10 +91,11 @@ node {
            <style>
            table, th, td {
              border: 1px solid black;
+             text-align: center;
            }
-           td,th {
-                      text-align: center;
-            }
+            th {
+                        color:green;
+               }
            </style>
            </head>
            <body>
