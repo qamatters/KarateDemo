@@ -1,4 +1,4 @@
-@Test123 @Smoke @Regression
+@Test123 @Smoke @Regression @JenkinTest
 
 Feature: Test blog get all post feature
 
