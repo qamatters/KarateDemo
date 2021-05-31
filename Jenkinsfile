@@ -14,7 +14,9 @@ node {
         stage('Build') {
          git 'https://github.com/qamatters/KarateDemo.git'
           try {
+          currentBuild.displayName = "${params.Tags}";
           currentBuild.description = "${params.Environment}";
+
           if(isUnix()) {
                    def mvnHome = tool name: 'maven', type: 'maven'
                       tool name: 'JDK 1.8', type: 'jdk'
