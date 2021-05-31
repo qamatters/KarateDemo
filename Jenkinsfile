@@ -5,8 +5,8 @@ node {
         parameters(
             [
              string(defaultValue: '@Smoke', name: 'Tags'),
-             string(defaultValue: 'e2e', name: 'Environment'),
-             choice(name: 'Environment', choices:['e2e', 'stage', 'dev'] ,defaultValue: 'e2e')
+             string(defaultValue: 'QA', name: 'Environment'),
+             choice(name: 'Environment', choices:['QA', 'stage', 'dev'] ,defaultValue: 'e2e')
              ]
             )
     ]
