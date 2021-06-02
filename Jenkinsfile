@@ -12,7 +12,7 @@ node {
     ]
   )
         stage('Build') {
-         git 'https://github.com/qamatters/KarateDemo.git'
+         git branch: 'groovyChanges', url: 'https://github.com/qamatters/KarateDemo.git'
           try {
           currentBuild.displayName = "${params.Environment}";
           currentBuild.description = "${params.Tags}";
