@@ -1,4 +1,8 @@
+#!/usr/bin/env groovy
+
 node {
+ def groovymethods = load("groovyCodeForJenkins.groovy");
+ groovymethods.firstTest();
 
  properties(
     [
@@ -12,7 +16,8 @@ node {
     ]
   )
         stage('Build') {
-         git branch: 'groovyChanges', url: 'https://github.com/qamatters/KarateDemo.git'
+         git branch: 'groovyChanges',
+         url: 'https://github.com/qamatters/KarateDemo.git'
           try {
           currentBuild.displayName = "${params.Environment}";
           currentBuild.description = "${params.Tags}";

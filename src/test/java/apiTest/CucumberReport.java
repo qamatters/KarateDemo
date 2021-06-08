@@ -57,7 +57,5 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
         reportBuilder.generateReports();
         System.out.println("Generating summary" );
         parseReport(folderPath);
-
     }
-
 }
