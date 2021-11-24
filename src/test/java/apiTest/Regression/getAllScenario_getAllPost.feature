@@ -9,7 +9,7 @@ Feature: Test blog get first post feature
   Scenario: Fetch all post
     Given path 'posts'
     When method GET
-    Then status 200
+    Then status 400 
     And print 'Response time for this API is:', responseTime
     And print response.length
     Then match each response[*].userId == '#number'
