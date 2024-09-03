@@ -19,7 +19,7 @@ node {
 
           if(isUnix()) {
                    def mvnHome = tool name: 'maven', type: 'maven'
-                      tool name: 'JDK 1.8', type: 'jdk'
+                      tool name: 'corretto-11.0.24', type: 'jdk'
                       sh '''
                                           echo "PATH = ${PATH}"
                                           echo "M2_HOME = ${M2_HOME}"
