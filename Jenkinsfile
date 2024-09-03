@@ -23,7 +23,7 @@ node {
                                   // Get Maven and JDK paths
                                   def mvnHome = tool name: 'MAVEN', type: 'maven'
                                   println "maven home ${mvnHome}"
-                                  def jdkHome = tool name: 'Java', type: 'jdk'
+                                  def jdkHome = tool name: 'JAVA_HOME', type: 'jdk'
                                   println "jdk home is ${jdkHome}"
 
                                   // Set environment variables
