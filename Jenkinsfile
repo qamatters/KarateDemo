@@ -22,7 +22,9 @@ node {
 
                                   // Get Maven and JDK paths
                                   def mvnHome = tool name: 'maven', type: 'maven'
+                                  println "maven home ${mvnHome}"
                                   def jdkHome = tool name: 'corretto-11.0.24', type: 'jdk'
+                                  println "jdk home is ${jdkHome}"
 
                                   // Set environment variables
                                   withEnv(["M2_HOME=${mvnHome}", "JAVA_HOME=${jdkHome}", "PATH+M2=${mvnHome}/bin", "PATH+JAVA=${jdkHome}/bin"]) {
