@@ -21,9 +21,9 @@ node {
                                   println "I am inside Unix"
 
                                   // Get Maven and JDK paths
-                                  def mvnHome = tool name: 'maven', type: 'maven'
+                                  def mvnHome = tool name: 'MAVEN', type: 'maven'
                                   println "maven home ${mvnHome}"
-                                  def jdkHome = tool name: 'corretto-11.0.24', type: 'jdk'
+                                  def jdkHome = tool name: 'JAVA 11', type: 'jdk'
                                   println "jdk home is ${jdkHome}"
 
                                   // Set environment variables
