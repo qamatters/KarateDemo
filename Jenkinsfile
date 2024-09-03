@@ -18,12 +18,14 @@ node {
           currentBuild.description = "${params.Tags}";
 
           if(isUnix()) {
+          println "I am inside unix"
                    def mvnHome = tool name: 'maven', type: 'maven'
                       tool name: 'corretto-11.0.24', type: 'jdk'
                       sh '''
                                           echo "PATH = ${PATH}"
                                           echo "M2_HOME = ${M2_HOME}"
                          '''
+             println "Maven path is set"
             /* ... existing build steps ... */
 
             println "-------------------------------------------------------------------------------------"
