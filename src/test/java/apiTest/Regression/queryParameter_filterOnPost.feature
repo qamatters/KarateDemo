@@ -1,4 +1,4 @@
-@Test123 @Smoke @Regression
+@Test123 @Smoke @Regression @Single
 
 Feature: Test blog get first post feature
 
