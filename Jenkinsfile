@@ -17,27 +17,30 @@ node {
           currentBuild.displayName = "${params.Environment}";
           currentBuild.description = "${params.Tags}";
 
-          if(isUnix()) {
-          println "I am inside unix"
-                   def mvnHome = tool name: 'maven', type: 'maven'
-                      tool name: 'corretto-11.0.24', type: 'jdk'
-                      sh '''
+          if (isUnix()) {
+                                  println "I am inside Unix"
+
+                                  // Get Maven and JDK paths
+                                  def mvnHome = tool name: 'maven', type: 'maven'
+                                  def jdkHome = tool name: 'corretto-11.0.24', type: 'jdk'
+
+                                  // Set environment variables
+                                  withEnv(["M2_HOME=${mvnHome}", "JAVA_HOME=${jdkHome}", "PATH+M2=${mvnHome}/bin", "PATH+JAVA=${jdkHome}/bin"]) {
+                                      sh '''
                                           echo "PATH = ${PATH}"
                                           echo "M2_HOME = ${M2_HOME}"
-                         '''
-             println "Maven path is set"
-            /* ... existing build steps ... */
-
-            println "-------------------------------------------------------------------------------------"
-            println "Tag is ${params.Tags}"
-            println "Environment is ${params.Environment}"
-
-            println "----------------------------Print Environment variables in Linux machine---------------------------------------------------------"
-            sh 'env'
-            println "-------------------------------------------------------------------------------------"
-            sh "${mvnHome}/bin/mvn clean test -DargLine=\'-Dkarate.env=${params.Environment}\' -Dkarate.options=\"--tags ${params.Tags}\" -Dtest=CucumberReport -DfailIfNoTests=false"
-
-            } else {
+                                          echo "JAVA_HOME = ${JAVA_HOME}"
+                                      '''
+                                      println "Maven path is set"
+                                      println "-------------------------------------------------------------------------------------"
+                                      println "Tag is ${params.Tags}"
+                                      println "Environment is ${params.Environment}"
+                                      println "----------------------------Print Environment variables in Unix machine---------------------------------------------------------"
+                                      sh 'env'
+                                      println "-------------------------------------------------------------------------------------"
+                                      sh "${mvnHome}/bin/mvn clean test -DargLine='-Dkarate.env=${params.Environment}' -Dkarate.options=\"--tags ${params.Tags}\" -Dtest=CucumberReport -DfailIfNoTests=false"
+                                  }
+                              }
 
             println "------------------------------Print Environment variables in Windows machine-------------------------------------------------------"
             bat 'set'
