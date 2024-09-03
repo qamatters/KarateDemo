@@ -40,7 +40,7 @@ node {
                                       println "-------------------------------------------------------------------------------------"
                                       sh "${mvnHome}/bin/mvn clean test -DargLine='-Dkarate.env=${params.Environment}' -Dkarate.options=\"--tags ${params.Tags}\" -Dtest=CucumberReport -DfailIfNoTests=false"
                                   }
-                              }
+                              } else {
 
             println "------------------------------Print Environment variables in Windows machine-------------------------------------------------------"
             bat 'set'
