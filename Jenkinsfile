@@ -19,7 +19,8 @@ node {
 
           if (isUnix()) {
                                   println "I am inside Unix"
-
+                                  echo "JAVA_HOME = ${env.JAVA_HOME}"
+                                  echo "M2_HOME = ${env.M2_HOME}"
                                   // Get Maven and JDK paths
                                   def mvnHome = tool name: 'MAVEN', type: 'maven'
                                   println "maven home ${mvnHome}"
